@@ -1,0 +1,11 @@
+@model IEnumerable<Order>
+<h2>Order History</h2>
+<form class="row g-2 mb-3">
+<div class="col-md-3"><input name="from" type="date" class="form-control"/></div>
+<div class="col-md-3"><input name="to" type="date" class="form-control"/></div>
+<div class="col-md-3"><select name="status" class="form-select"><option value="">All statuses</option><option>Paid</option><option>Pending</option><option>Failed</option></select></div>
+<div class="col-auto"><button class="btn btn-primary">Filter</button></div>
+</form>
+<div class="card p-3"><table class="table"><thead><tr><th>Order</th><th>Date</th><th>Total</th><th>Status</th><th>Items</th></tr></thead><tbody>
+@foreach(var o in Model){<tr><td>@o.OrderNumber</td><td>@o.CreatedAt.ToLocalTime()</td><td>₹@o.GrandTotal.ToString("N2")</td><td>@o.PaymentStatus</td><td><details><summary>View</summary><ul>@foreach(var i in o.Items){<li>@i.ProductName × @i.Quantity — ₹@i.LineTotal.ToString("N2")</li>}</ul></details></td></tr>}
+</tbody></table></div>

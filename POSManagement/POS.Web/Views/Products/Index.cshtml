@@ -1,0 +1,18 @@
+@model IEnumerable<ProductDto>
+<div class="d-flex justify-content-between align-items-center mb-3">
+<h2>Products & Inventory</h2><a class="btn btn-primary" asp-action="Create">+ Add Product</a>
+</div>
+<form class="row g-2 mb-3">
+<div class="col-md-5"><input name="search" class="form-control" placeholder="Search name or SKU" /></div>
+<div class="col-auto"><button class="btn btn-outline-secondary">Search</button></div>
+</form>
+<div class="card p-3"><div class="table-responsive"><table class="table align-middle">
+<thead><tr><th>Name</th><th>SKU</th><th>Category</th><th>Price</th><th>Stock</th><th>Status</th><th></th></tr></thead>
+<tbody>
+@foreach(var p in Model){
+<tr><td>@p.Name</td><td>@p.SKU</td><td>@p.Category</td><td>₹@p.Price.ToString("N2")</td><td>@p.StockQuantity</td>
+<td>@(p.StockQuantity <= p.LowStockThreshold ? "Low Stock" : "Normal")</td>
+<td><a class="btn btn-sm btn-outline-primary" asp-action="Edit" asp-route-id="@p.ProductId">Edit</a>
+<form asp-action="Delete" method="post" class="d-inline">@Html.AntiForgeryToken()<input type="hidden" name="id" value="@p.ProductId"/><button class="btn btn-sm btn-outline-danger" onclick="return confirm('Delete product?')">Delete</button></form></td></tr>
+}
+</tbody></table></div></div>

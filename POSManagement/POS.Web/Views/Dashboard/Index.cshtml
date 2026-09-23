@@ -1,0 +1,14 @@
+@{
+    var summary = (DailySalesSummary)ViewBag.Summary;
+}
+<h2 class="mb-4">Dashboard</h2>
+<div class="row g-3">
+<div class="col-md-3"><div class="card p-4"><div class="text-muted">Today's Orders</div><h2>@summary.TotalOrders</h2></div></div>
+<div class="col-md-3"><div class="card p-4"><div class="text-muted">Today's Revenue</div><h2>₹@summary.TotalRevenue.ToString("N2")</h2></div></div>
+<div class="col-md-3"><div class="card p-4"><div class="text-muted">Discount Given</div><h2>₹@summary.TotalDiscount.ToString("N2")</h2></div></div>
+<div class="col-md-3"><div class="card p-4"><div class="text-muted">Low Stock</div><h2>@ViewBag.LowStock</h2></div></div>
+</div>
+<div class="card p-4 mt-4">
+<h5>Assignment modules</h5>
+<p>Product CRUD, POS billing, payment webhook, order history, daily report and low-stock automation are included in the project structure.</p>
+</div>

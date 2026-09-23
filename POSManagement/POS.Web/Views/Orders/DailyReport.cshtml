@@ -1,0 +1,9 @@
+@model DailySalesSummary
+<h2>Daily Sales Summary</h2>
+<div class="card p-4 mt-3">
+<p><b>Date:</b> @DateTime.Today.ToString("yyyy-MM-dd")</p>
+<p><b>Total Orders:</b> @Model.TotalOrders</p>
+<p><b>Total Revenue:</b> ₹@Model.TotalRevenue.ToString("N2")</p>
+<p><b>Total Discount:</b> ₹@Model.TotalDiscount.ToString("N2")</p>
+<button class="btn btn-outline-primary" onclick="window.print()">Print / Save as PDF</button>
+</div>
